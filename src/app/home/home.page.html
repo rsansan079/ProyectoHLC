@@ -5,28 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- Formulario para Añadir Coche -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Añadir Coche</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-label position="stacked">Marca</ion-label>
-        <ion-input [(ngModel)]="tareaEditando.titulo" placeholder="Introduce la marca"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="stacked">Modelo</ion-label>
-        <ion-input [(ngModel)]="tareaEditando.descripcion" placeholder="Introduce el modelo"></ion-input>
-      </ion-item>
-
-      <ion-button expand="block" color="primary" (click)="clickBotonInsertar()">Añadir Coche</ion-button>
-    </ion-card-content>
-  </ion-card>
-
-
-  
+ 
   <!-- Lista de Coches -->
   <ion-card>
     <ion-card-header>

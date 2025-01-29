@@ -30,33 +30,6 @@ export class HomePage {
 
 
 
-  clickBotonInsertar() {
-    if (!this.tareaEditando.titulo || !this.tareaEditando.descripcion) {
-      console.error('Error: La tarea no tiene datos válidos.');
-      return;
-    }
-  
-    this.firestoreService.insertar("tareas", this.tareaEditando)
-      .then(() => {
-        console.log('Tarea creada correctamente');
-  
-        // Agregar la nueva tarea manualmente al inicio del array
-        this.arrayColeccionTareas.unshift({
-          data: { ...this.tareaEditando }
-        });
-  
-        // Limpiar el contenido de la tarea que se está editando
-        this.tareaEditando = {} as Tarea;
-  
-        // Filtrar elementos vacíos en la lista
-        this.arrayColeccionTareas = this.arrayColeccionTareas.filter(tarea =>
-          tarea.data.titulo && tarea.data.descripcion
-        );
-      })
-      .catch((error) => {
-        console.error('Error al crear la tarea:', error);
-      });
-  }
   
 
 
