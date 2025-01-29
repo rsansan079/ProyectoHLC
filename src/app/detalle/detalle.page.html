@@ -10,4 +10,13 @@
       <ion-title size="large">detalle</ion-title>
     </ion-toolbar>
   </ion-header>
+  
+  <p>{{ id }}</p>
+  <p>Marca: {{ document.data.titulo }}</p>
+  <p>{{ document.data.descripcion }}</p>
+
+
+  <ion-button (click)="clicBotonBorrar()">Borrar tarea</ion-button>
+  <ion-button (click)="clicBotonModificar()">Modificar tarea</ion-button>
+
 </ion-content>
