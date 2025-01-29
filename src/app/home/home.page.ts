@@ -31,15 +31,33 @@ export class HomePage {
 
 
   clickBotonInsertar() {
+    if (!this.tareaEditando.titulo || !this.tareaEditando.descripcion) {
+      console.error('Error: La tarea no tiene datos válidos.');
+      return;
+    }
+  
     this.firestoreService.insertar("tareas", this.tareaEditando)
       .then(() => {
         console.log('Tarea creada correctamente');
-        //Limpiar el contenido de la tarea que se está editando
+  
+        // Agregar la nueva tarea manualmente al inicio del array
+        this.arrayColeccionTareas.unshift({
+          data: { ...this.tareaEditando }
+        });
+  
+        // Limpiar el contenido de la tarea que se está editando
         this.tareaEditando = {} as Tarea;
-      }, (error) => {
-        console.error(error);
+  
+        // Filtrar elementos vacíos en la lista
+        this.arrayColeccionTareas = this.arrayColeccionTareas.filter(tarea =>
+          tarea.data.titulo && tarea.data.descripcion
+        );
+      })
+      .catch((error) => {
+        console.error('Error al crear la tarea:', error);
       });
   }
+  
 
 
 
@@ -69,22 +87,11 @@ export class HomePage {
     this.router.navigate(['/detalle', this.idTareaSelec]);
   }
 
-  clicBotonBorrar() {
-    this.firestoreService.borrar("tareas", this.idTareaSelec).then(() => {
-      // Actualizar la lista completa
-      this.obtenerListaTareas();
-      // Limpiar datos de pantalla
-      this.tareaEditando = {} as Tarea;
-    })
-  }
 
-  clicBotonModificar() {
-    this.firestoreService.actualizar("tareas", this.idTareaSelec, this.tareaEditando).then(() => {
-      // Actualizar la lista completa
-      this.obtenerListaTareas();
-      // Limpiar datos de pantalla
-      this.tareaEditando = {} as Tarea;
-    })
+
+
+  navegarAAgregar() {
+    this.router.navigate(['/detalle', 'nuevo']);
   }
 
 

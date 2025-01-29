@@ -25,3 +25,21 @@
 #container a {
   text-decoration: none;
 }
+
+ion-content {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+}
+
+ion-list {
+  margin: 0;
+  padding: 0;
+}
+
+ion-item {
+  --inner-padding-top: 8px;
+  --inner-padding-bottom: 8px;
+  --min-height: 56px;
+}

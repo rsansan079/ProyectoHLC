@@ -1,41 +1,57 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Venta de Vehículos
-    </ion-title>
+    <ion-title>Venta de Vehículos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- Input para Marca -->
-  <ion-item>
-    <ion-label>Marca</ion-label>
-    <ion-input [(ngModel)]="tareaEditando.titulo"></ion-input>
-  </ion-item>
+  <!-- Formulario para Añadir Coche -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Añadir Coche</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked">Marca</ion-label>
+        <ion-input [(ngModel)]="tareaEditando.titulo" placeholder="Introduce la marca"></ion-input>
+      </ion-item>
 
-  <!-- Input para Modelo -->
-  <ion-item>
-    <ion-label>Modelo</ion-label>
-    <ion-input [(ngModel)]="tareaEditando.descripcion"></ion-input>
-  </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Modelo</ion-label>
+        <ion-input [(ngModel)]="tareaEditando.descripcion" placeholder="Introduce el modelo"></ion-input>
+      </ion-item>
 
-  <!-- Botones de acción -->
-  <ion-button (click)="clickBotonInsertar()">Añadir Coche</ion-button>
-  <ion-button (click)="clicBotonBorrar()">Borrar tarea</ion-button>
-  <ion-button (click)="clicBotonModificar()">Modificar tarea</ion-button>
+      <ion-button expand="block" color="primary" (click)="clickBotonInsertar()">Añadir Coche</ion-button>
+    </ion-card-content>
+  </ion-card>
 
+
+  
   <!-- Lista de Coches -->
-  <h1>Lista de Coches</h1>
-  <ion-list>
-    <ion-item *ngFor="let documentTarea of arrayColeccionTareas" (click)="selecTarea(documentTarea)">
-      <ion-grid>
-        <ion-row>
-          <h2>{{ documentTarea.data.titulo }}</h2>
-        </ion-row>
-        <ion-row>
-          <p>{{ documentTarea.data.descripcion }}</p>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-  </ion-list>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Lista de Coches</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item
+          *ngFor="let documentTarea of arrayColeccionTareas"
+          (click)="selecTarea(documentTarea)"
+          button
+        >
+          <ion-label>
+            <h2>{{ documentTarea.data.titulo }}</h2>
+            <p>{{ documentTarea.data.descripcion }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botón Flotante -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="navegarAAgregar()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
