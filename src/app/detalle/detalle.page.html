@@ -22,5 +22,7 @@
   </ion-button>
 
   <!-- El botón de borrar solo aparece si estamos editando un coche -->
-  <ion-button *ngIf="!modoNuevo" (click)="clicBotonBorrar()" color="danger">Borrar Coche</ion-button>
+  <ion-button *ngIf="!modoNuevo" (click)="confirmarBorrado()" color="danger">
+    Borrar Coche
+  </ion-button>
 </ion-content>

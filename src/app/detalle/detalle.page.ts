@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Tarea } from '../tarea';
 import { FirestoreService } from '../firestore.service';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-detalle',
@@ -18,7 +20,8 @@ export class DetallePage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute, 
     private firestoreService: FirestoreService, 
-    private router: Router
+    private router: Router,
+    private alertController: AlertController 
   ) { 
     this.tareaEditando = {} as Tarea;
   }
@@ -55,6 +58,34 @@ export class DetallePage implements OnInit {
       this.router.navigate(['/']);
     });
   }
+
+
+  
+    async confirmarBorrado() {
+      const alert = await this.alertController.create({
+        header: 'Confirmar Borrado',
+        message: '¿Estás seguro de que quieres eliminar este coche?',
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: () => {
+              console.log('Borrado cancelado');
+            }
+          },
+          {
+            text: 'Borrar',
+            cssClass: 'danger',
+            handler: () => {
+              this.clicBotonBorrar();
+            }
+          }
+        ]
+      });
+  
+      await alert.present();
+    }
 
   clicBotonBorrar() {
     this.firestoreService.borrar("tareas", this.id).then(() => {
