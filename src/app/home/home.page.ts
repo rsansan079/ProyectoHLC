@@ -35,7 +35,7 @@ export class HomePage {
 
 
   obtenerListaTareas() {
-    this.firestoreService.consultar("tareas").subscribe((resultadoConsultaTareas) => {
+    this.firestoreService.consultar("coches-rafa").subscribe((resultadoConsultaTareas) => {
 
       this.arrayColeccionTareas = [];
       resultadoConsultaTareas.forEach((datosTarea: any) => {

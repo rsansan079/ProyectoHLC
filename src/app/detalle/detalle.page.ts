@@ -37,7 +37,7 @@ export class DetallePage implements OnInit {
       this.modoNuevo = false;
       this.id = idRecibido ?? "";
 
-      this.firestoreService.consultarPorId("tareas", this.id).subscribe((resultado: any) => {
+      this.firestoreService.consultarPorId("coches-rafa", this.id).subscribe((resultado: any) => {
         if (resultado.payload.data() != null) {
           this.tareaEditando = resultado.payload.data();
         }
@@ -46,14 +46,14 @@ export class DetallePage implements OnInit {
   }
 
   clicBotonGuardar() {
-    this.firestoreService.insertar("tareas", this.tareaEditando).then(() => {
+    this.firestoreService.insertar("coches-rafa", this.tareaEditando).then(() => {
       console.log("Coche añadido correctamente");
       this.router.navigate(['/']);
     });
   }
 
   clicBotonModificar() {
-    this.firestoreService.actualizar("tareas", this.id, this.tareaEditando).then(() => {
+    this.firestoreService.actualizar("coches-rafa", this.id, this.tareaEditando).then(() => {
       console.log("Coche modificado correctamente");
       this.router.navigate(['/']);
     });
@@ -88,7 +88,7 @@ export class DetallePage implements OnInit {
     }
 
   clicBotonBorrar() {
-    this.firestoreService.borrar("tareas", this.id).then(() => {
+    this.firestoreService.borrar("coches-rafa", this.id).then(() => {
       console.log("Coche eliminado correctamente");
       this.router.navigate(['/']);
     });
